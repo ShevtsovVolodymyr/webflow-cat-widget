@@ -1,9 +1,9 @@
-import React from "react";
-import ReactDOM from "react-dom/client";
-import App from "./App";
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+import App from './App';
 
 // Get the mount node from Webflow embed
-const mountNode = document.getElementById("my-widget");
+const mountNode = document.getElementById('veralumeReportWidget');
 
 if (mountNode) {
   ReactDOM.createRoot(mountNode).render(

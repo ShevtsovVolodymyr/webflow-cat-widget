@@ -1,0 +1,137 @@
+
+.vl-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 50;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &__backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    cursor: pointer;
+  }
+
+  &__content {
+    position: relative;
+    background-color: white;
+    border-radius: 0.5rem;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+    max-width: 32rem;
+    width: 100%;
+    margin: 0 1rem;
+    max-height: 90vh;
+    overflow: hidden;
+  }
+
+  &__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.5rem;
+    padding-bottom: 1rem;
+  }
+
+  &__title {
+    font-size: 1.5rem;
+    font-weight: 300;
+    color: #111827;
+    margin: 0;
+  }
+
+  &__close-button {
+    color: #9ca3af;
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    line-height: 1;
+    cursor: pointer;
+    padding: 0.25rem;
+    border-radius: 0.25rem;
+    transition: color 0.2s ease-in-out;
+
+    &:hover {
+      color: #4b5563;
+    }
+
+    &:focus {
+      outline: 2px solid #3b82f6;
+      outline-offset: 2px;
+    }
+  }
+
+  &__divider {
+    height: 1px;
+    background-color: #e5e7eb;
+    margin: 0 1.5rem;
+  }
+
+  &__body {
+    padding: 1.5rem;
+    overflow-y: auto;
+  }
+}
+
+// Responsive design
+@media (max-width: 640px) {
+  .vl-modal {
+    &__content {
+      margin: 0 0.5rem;
+      max-width: calc(100vw - 1rem);
+    }
+
+    &__header {
+      padding: 1rem;
+      padding-bottom: 0.75rem;
+    }
+
+    &__title {
+      font-size: 1.25rem;
+    }
+
+    &__body {
+      padding: 1rem;
+    }
+
+    &__divider {
+      margin: 0 1rem;
+    }
+  }
+}
+
+// Animation (optional)
+.vl-modal {
+  animation: vl-modal-fade-in 0.2s ease-out;
+
+  &__content {
+    animation: vl-modal-scale-in 0.2s ease-out;
+  }
+}
+
+@keyframes vl-modal-fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes vl-modal-scale-in {
+  from {
+    transform: scale(0.95);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}

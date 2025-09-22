@@ -1,0 +1,84 @@
+/*
+.f-12-400 {
+  font-size: 12px;
+  font-weight: 400;
+}
+
+.l-h-16 {
+  line-height: 16px;
+}
+
+.f-c-text-main {
+  color: $gray1;
+}
+*/
+
+$font_size: (12, 14, 16, 18, 21);
+$font_weight: (normal, 400, 500, 600, 700, bold);
+$font_color:
+  "text-main" $text-color,
+  "text-secondary" $text-color-light;
+
+// $font_family:
+//    "releway" $fontRegular,
+//    "roboto" $fontSecondRegular;
+
+$line_heights: (16, 18, 24);
+
+@each $size in $font_size {
+  @each $weight in $font_weight {
+    .f-#{$size}-#{$weight} {
+      font-size: #{$size}px !important;
+      font-weight: #{$weight} !important;
+    }
+  }
+}
+
+@each $line_height in $line_heights {
+  .l-h-#{$line_height} {
+    line-height: #{$line_height}px !important;
+  }
+}
+
+@each $classname, $color in $font_color {
+  .f-c-#{$classname} {
+    color: $color !important;
+  }
+}
+
+// @each $classname, $family in $font_family {
+//   .f-f-#{$classname} {
+//     font-family: $family !important;
+//   }
+// }
+
+.text-italic {
+  font-style: italic;
+}
+
+.text-overflow {
+  display: block;
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.nowrap {
+  white-space: nowrap;
+}
+
+.uppercase {
+  text-transform: uppercase;
+}
+
+.text-start {
+  text-align: start !important;
+}
+.text-end {
+  text-align: end !important;
+}
+
+.text-center {
+  text-align: center !important;
+}

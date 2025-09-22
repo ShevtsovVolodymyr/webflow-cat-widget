@@ -1,0 +1,62 @@
+.vl-growth-lines {
+  &__wrapper {
+    padding-bottom: 32px;
+  }
+  display: flex;
+  flex-wrap: nowrap;
+  padding: 10px;
+  border: solid 1px $green;
+  gap: 8px;
+
+  &__item {
+    flex: 1 1 25%;
+    height: 135px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-transform: uppercase;
+    font-size: 15px;
+    position: relative;
+    border: 1px solid $border-color3;
+    background-color: $background-color;
+
+    &-title {
+      margin: 16px auto;
+      text-transform: uppercase;
+    }
+
+    &-image  {
+      height: 90px;
+      width: 100%;
+      background-size: cover;
+     &.none {
+      background-image: url('../../assets/growth-lines/none.png');
+     }
+     &.slight {
+      background-image: url('../../assets/growth-lines/slight.png');
+     }
+     &.moderate {
+      background-image: url('../../assets/growth-lines/moderate.png');
+     }
+     &.distinct {
+      background-image: url('../../assets/growth-lines/distinct.png');
+     }
+    }
+
+    &.selected {
+      font-weight: 500;
+    }
+
+    &.selected::after {
+      content: '';
+      position: absolute;
+      bottom: -40px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 24px;
+      height: 24px;
+      background: url('../../assets/indicator.svg') no-repeat center;
+    }
+  }
+}
