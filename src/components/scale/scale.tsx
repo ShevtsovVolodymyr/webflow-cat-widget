@@ -4,7 +4,7 @@ import './scale.scss';
 
 interface ScaleComponentProps {
   type: 'color' | 'clarity';
-  value: string;
+  value: string | null;
 }
 
 const ScaleComponent: React.FC<ScaleComponentProps> = ({ type, value }) => {
@@ -45,7 +45,7 @@ const ScaleComponent: React.FC<ScaleComponentProps> = ({ type, value }) => {
           <div
             key={item.desc}
             className={`vl-scale__bottom-label ${
-              item.desc === data[selectedIndex].desc ? 'selected' : ''
+              item.desc === data[selectedIndex]?.desc ? 'selected' : ''
             }`}
           >
             {item.desc}

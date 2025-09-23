@@ -19,16 +19,24 @@ export const COLOR_SCALE: ScaleItem[] = [
   { value: 'J', desc: 'Near Colorless' },
   { value: 'K', desc: 'Faint' },
   { value: 'L', desc: 'Faint' },
-  { value: 'M', desc: 'Faint' },
+  { value: 'M-W', desc: 'Faint' },
+  { value: 'XYZ', desc: 'Faint' },
+  { value: 'Yellow', desc: 'Faint' },
+  { value: 'Pink', desc: 'Faint' },
+  { value: 'Blue', desc: 'Faint' },
 ];
 
 export const CLARITY_SCALE: ScaleItem[] = [
+  { value: 'FL', desc: 'Flawless' },
   { value: 'IF', desc: 'Flawless/IF' },
   { value: 'VVS1', desc: 'Very Very Slightly Included' },
   { value: 'VVS2', desc: 'Very Very Slightly Included' },
-  { value: 'VS1', desc: 'Very  Slightly Included' },
-  { value: 'VS2', desc: 'Very  Slightly Included' },
-  { value: 'SI¹-²', desc: 'Slightly Included' },
+  { value: 'VS1', desc: 'Very Slightly Included' },
+  { value: 'VS2', desc: 'Very Slightly Included' },
+  { value: 'SI1', desc: 'Slightly Included' },
+  { value: 'SI2', desc: 'Slightly Included' },
+  { value: 'SI3', desc: 'Slightly Included' },
+  { value: 'FANCY', desc: 'Fancy' },
 ];
 
 export const VISUAL_PERFORMACE: VisualPerformanceItem[] = [
@@ -39,6 +47,11 @@ export const VISUAL_PERFORMACE: VisualPerformanceItem[] = [
   { desc: 'Poor', minValue: 0, maxValue: 80 },
 ];
 
-export const COLOR_TONE = ['pure', 'brown tint', 'grey tint', 'blue tint'];
+export const COLOR_TONE = [
+  { key: 'Pure', value: 'Pure' },
+  { key: 'Brown', value: 'Brown tint' },
+  { key: 'Grey', value: 'Grey tint' },
+  { key: 'Blue', value: 'Blue tint' },
+];
 
-export const GROWTH_LINES = ['none', 'slight', 'moderate', 'distinct'];
+export const GROWTH_LINES = ['None', 'Slight', 'Moderate', 'Distinct'];

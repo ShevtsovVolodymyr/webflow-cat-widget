@@ -3,7 +3,7 @@ import './growth-lines.scss';
 import { GROWTH_LINES } from '../../consts';
 
 interface GrowthLinesComponentProps {
-  value: string;
+  value: string | null;
 }
 
 const GrowthLinesComponent: React.FC<GrowthLinesComponentProps> = ({
@@ -20,7 +20,7 @@ const GrowthLinesComponent: React.FC<GrowthLinesComponentProps> = ({
             }`}
           >
             <div className="vl-growth-lines__item-title">{item}</div>
-            <div className={`vl-growth-lines__item-image ${item}`}></div>
+            <div className={`vl-growth-lines__item-image ${item.toLocaleLowerCase()}`}></div>
           </div>
         ))}
       </div>
