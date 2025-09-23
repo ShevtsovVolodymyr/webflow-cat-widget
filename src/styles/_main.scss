@@ -6,12 +6,14 @@
   max-width: 1600px;
   width: 100%;
   margin: 0 auto;
+  font-family: "General Sans", sans-serif;
 
   h1,
   h2,
   h3 {
     margin: 0;
     padding: 0;
+    font-family: "Switzer", sans-serif;
   }
   h1 {
     font-size: 52px;
@@ -37,6 +39,7 @@
   }
 
   &__btn {
+    font-family: "Switzer", sans-serif;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -88,6 +91,25 @@
       > p:last-child {
         font-weight: 600;
         text-align: right;
+      }
+      a {
+        text-decoration: underline;
+        font-weight: 600;
+        color: $text-color;
+        &:hover, &:focus, &:active, &:visited {
+          color: $text-color;
+        }
+      }
+    }
+    .info-text {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      cursor: pointer;
+      img {
+        width: 16px;
+        height: 16px;
+        display: block;
       }
     }
   }
@@ -233,6 +255,7 @@
     }
   }
   &__pdf-btn {
+    font-family: "Switzer", sans-serif;
     font-size: 15px;
     text-transform: uppercase;
     padding: 10px 14px 10px 40px;

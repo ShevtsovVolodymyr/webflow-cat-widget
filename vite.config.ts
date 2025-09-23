@@ -17,6 +17,7 @@ export default defineConfig(({ mode }) => {
       preprocessorOptions: {
         scss: {
           additionalData: `
+            @import "@/styles/_fonts.scss";
             @import "@/styles/_variables.scss";
             @import "@/styles/_typography.scss";
           `,

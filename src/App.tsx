@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { useEffect, useState } from 'react';
 import veralumeLogo from '../public/veralume-logo-green.svg';
+import infoIcon from '../public/info.svg';
 import './styles/_main.scss';
 import { useModal } from './hooks/useModal';
 
@@ -10,6 +11,7 @@ import GrowthLinesComponent from './components/growth-lines/growth-lines';
 import VisualPerformanceCompoent from './components/visual-performance/visual-performance';
 import OpticalAnalyssisComponent from './components/optical-analysis/optical-analysis';
 import DiamondLoader from './components/diamond-loader/diamond-loader';
+import { Tooltip } from './components/tooltip/tooltip';
 
 function App() {
   const apiUrl = import.meta.env.VITE_API_URL;
@@ -41,7 +43,7 @@ function App() {
     fetchReport();
   }, []);
 
-  if (loading) return <DiamondLoader/>;
+  if (loading) return <DiamondLoader />;
   if (error) return <p className="error">{error}</p>;
 
   return (
@@ -157,11 +159,20 @@ function App() {
               </div>
               <div className="vl-report__table-row">
                 <p>Growing Technique</p>
-                <p>HPHT</p>
+                <Tooltip
+                  content="This Laboratory Grown Diamond was created by High Pressure High Temperature (HPHT) growth process. Type II"
+                  position="bottom"
+                >
+                  <p className="info-text">
+                    HPHT <img src={infoIcon} alt="info" />
+                  </p>
+                </Tooltip>
               </div>
               <div className="vl-report__table-row">
                 <p>GIA Report</p>
-                <p>12256665522</p>
+                <a href="" target="_blank">
+                  12256665522
+                </a>
               </div>
             </div>
           </div>
