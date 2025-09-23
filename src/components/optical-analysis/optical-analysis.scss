@@ -1,0 +1,122 @@
+.vl-optical-analysis {
+  border-top: 1px solid $border-color3;
+  display: flex;
+  flex: 1;
+
+  &__col-1 {
+    flex: 1 1 55%;
+    border-right: 1px solid $border-color3;
+    font-size: 16px;
+    font-weight: 400;
+    p {
+      margin: 14px auto 65px;
+      width: fit-content;
+    }
+  }
+
+  &__single {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    .vl-optical-analysis__aset {
+      width: 50%;
+      margin: 0;
+    }
+    .vl-optical-analysis__legend {
+      margin: 100px auto 0 10%;
+    }
+    p {
+      margin: 14px auto 0 !important;
+    }
+
+    .vl-optical-analysis__aset-image-wrapper {
+      border-right: 1px solid $border-color3;
+      padding-right: 10px;
+    }
+  }
+
+  &__logo {
+    display: block;
+    width: 170px;
+    height: auto;
+    margin: 54px auto;
+  }
+  &__aset {
+    margin: 0 auto;
+
+    .vl-optical-analysis__aset-image {
+      display: block;
+      width: 100%;
+      height: auto;
+      max-width: 280px;
+      margin: auto;
+    }
+  }
+
+  &__legend {
+    list-style: none;
+    padding: 0;
+    margin: 0 auto;
+    width: fit-content;
+
+    li {
+      list-style: none;
+      position: relative;
+      padding-left: 28px;
+      margin-bottom: 10px;
+
+      &::before {
+        content: '';
+        position: absolute;
+        width: 18px;
+        height: 18px;
+        top: 50%;
+        left: 0;
+        transform: translateY(-50%);
+        display: block;
+        box-sizing: border-box;
+      }
+
+      &:nth-child(1)::before {
+        background-color: $red;
+      }
+      &:nth-child(2)::before {
+        background-color: $green2;
+      }
+      &:nth-child(3)::before {
+        border: 1px solid $black;
+      }
+      &:nth-child(4)::before {
+        background-color: $dark-blue;
+      }
+    }
+  }
+  &__col-2 {
+    flex: 1 1 45%;
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__arrow,
+  &__heart {
+    flex: 1 1 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    > img {
+      max-width: 220px;
+      height: auto;
+      display: block;
+      margin: 0 auto;
+    }
+    p {
+      width: fit-content;
+      margin: 14px auto 0;
+      font-size: 14px;
+    }
+  }
+  &__heart {
+    border-top: 1px solid $border-color3;
+  }
+}

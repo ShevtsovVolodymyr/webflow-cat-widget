@@ -1,66 +1,47 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { useEffect, useState } from 'react';
 import veralumeLogo from '../public/veralume-logo-green.svg';
 import './styles/_main.scss';
+import { useModal } from './hooks/useModal';
 
 import ScaleComponent from './components/scale/scale';
 import ColorToneComponent from './components/color-tone/color-tone';
 import GrowthLinesComponent from './components/growth-lines/growth-lines';
-interface Cat {
-  id: string;
-  name: string;
-  origin: string;
-  temperament: string;
-  description: string;
-  wikipedia_url?: string;
-  reference_image_id?: string;
-}
+import VisualPerformanceCompoent from './components/visual-performance/visual-performance';
+import OpticalAnalyssisComponent from './components/optical-analysis/optical-analysis';
+import DiamondLoader from './components/diamond-loader/diamond-loader';
 
 function App() {
+  const apiUrl = import.meta.env.VITE_API_URL;
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string>('');
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const openModal = () => setIsModalOpen(true);
-  const closeModal = () => setIsModalOpen(false);
+  const { open, modal } = useModal();
 
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
-    const id = params.get('id') || 'beng';
+    const id = params.get('id') || '';
 
-    async function fetchCat() {
+    async function fetchReport() {
       try {
-        const res = await fetch(
-          `https://api.thecatapi.com/v1/breeds/search?q=${id}`
-        );
-        const data: Cat[] = await res.json();
+        const res = await fetch(`${apiUrl}?q=${id}`);
+        const data: any = await res.json();
 
-        if (data.length > 0) {
-          const selected = data[0];
-
-          // Fetch image if available
-          if (selected.reference_image_id) {
-            try {
-              const imgRes = await fetch(
-                `https://api.thecatapi.com/v1/images/${selected.reference_image_id}`
-              );
-              const imgData = await imgRes.json();
-            } catch {
-              // fallback to placeholder
-            }
-          }
+        if (data) {
+          console.log('Fetched data:', data);
         } else {
-          setError('Cat not found.');
+          setError('Diamond info not found.');
         }
       } catch {
-        setError('Error fetching cat info.');
+        setError('Error fetching Diamond info.');
       } finally {
         setLoading(false);
       }
     }
 
-    fetchCat();
+    fetchReport();
   }, []);
 
-  if (loading) return <p>Loading...</p>;
+  if (loading) return <DiamondLoader/>;
   if (error) return <p className="error">{error}</p>;
 
   return (
@@ -153,39 +134,6 @@ function App() {
             <h3>Clarity Scale</h3>
             <ScaleComponent type="clarity" value="VVS2" />
           </div>
-          <div className="vl-report__section">
-            <div className="vl-report__title-wrapper">
-              <h2>Color Tone</h2>
-              <button className="vl-report__btn with-icon">Learn more</button>
-            </div>
-            <p className="vl-report__text">
-              Evaluates subtle undertones (brown, gray, blue) that can be
-              present even in <br /> colorless-graded diamonds and may affect
-              the diamond’s overall appearance.
-            </p>
-            <ColorToneComponent value="pure"></ColorToneComponent>
-          </div>
-          <div className="vl-report__section">
-            <div className="vl-report__title-wrapper">
-              <h2>Growth Lines</h2>
-              <button className="vl-report__btn with-icon">Learn more</button>
-            </div>
-            <p className="vl-report__text">
-              Assesses internal growth lines formed during crystal growth that
-              can impact brilliance and transparency
-            </p>
-            <GrowthLinesComponent value="none"></GrowthLinesComponent>
-          </div>
-          <div className="vl-report__section">
-            <div className="vl-report__title-wrapper">
-              <h2>Visual Performance</h2>
-              <button className="vl-report__btn with-icon">Learn more</button>
-            </div>
-            <p className="vl-report__text">
-              This proprietary VeraLume score is a weighted measure of the
-              factors that define a diamond's beauty
-            </p>
-          </div>
           <h3>Additional Grading Information</h3>
           <div className="vl-report__tables">
             <div className="vl-report__table">
@@ -217,8 +165,103 @@ function App() {
               </div>
             </div>
           </div>
+          <div className="vl-report__section">
+            <div className="vl-report__title-wrapper">
+              <h2>Color Tone</h2>
+              <button
+                className="vl-report__btn with-icon"
+                onClick={() =>
+                  open(
+                    'Color Tone',
+                    <p>
+                      Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+                      sed do eiusmod tempor incididunt ut labore et dolore magna
+                      aliqua. Ut enim ad minim veniam, quis nostrud exercitation
+                      ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                      Duis aute irure dolor in reprehenderit in voluptate velit
+                      esse cillum dolore eu fugiat nulla pariatur. Excepteur
+                      sint occaecat cupidatat non proident, sunt in culpa qui
+                      officia deserunt mollit anim id est laborum
+                    </p>
+                  )
+                }
+              >
+                Learn more
+              </button>
+            </div>
+            <p className="vl-report__text">
+              Evaluates subtle undertones (brown, gray, blue) that can be
+              present even in <br /> colorless-graded diamonds and may affect
+              the diamond’s overall appearance.
+            </p>
+            <ColorToneComponent value="pure"></ColorToneComponent>
+          </div>
+          <div className="vl-report__section">
+            <div className="vl-report__title-wrapper">
+              <h2>Growth Lines</h2>
+              <button
+                className="vl-report__btn with-icon"
+                onClick={() =>
+                  open(
+                    'Growth Lines',
+                    <p>
+                      Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+                      sed do eiusmod tempor incididunt ut labore et dolore magna
+                      aliqua. Ut enim ad minim veniam, quis nostrud exercitation
+                      ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                      Duis aute irure dolor in reprehenderit in voluptate velit
+                      esse cillum dolore eu fugiat nulla pariatur. Excepteur
+                      sint occaecat cupidatat non proident, sunt in culpa qui
+                      officia deserunt mollit anim id est laborum
+                    </p>
+                  )
+                }
+              >
+                Learn more
+              </button>
+            </div>
+            <p className="vl-report__text">
+              Assesses internal growth lines formed during crystal growth that
+              can impact brilliance and transparency
+            </p>
+            <GrowthLinesComponent value="none"></GrowthLinesComponent>
+          </div>
+          <div className="vl-report__section">
+            <div className="vl-report__title-wrapper">
+              <h2>Visual Performance</h2>
+              <button
+                className="vl-report__btn with-icon"
+                onClick={() =>
+                  open(
+                    'Visual Performance',
+                    <p>
+                      Each Veralume Visual Performance score is derived from a
+                      multi-factor analysis that combines cut precision, polish,
+                      symmetry, light behavior, and structural clarity. In
+                      addition to these core measures, our system incorporates
+                      advanced criteria such as growth line visibility and
+                      nuanced color tone — factors often overlooked in
+                      conventional grading — to provide a more complete picture
+                      of a diamond’s true beauty.
+                    </p>
+                  )
+                }
+              >
+                Learn more
+              </button>
+            </div>
+            <p className="vl-report__text">
+              This proprietary VeraLume score is a weighted measure of the
+              factors that define a diamond's beauty
+            </p>
+            <VisualPerformanceCompoent value={97}></VisualPerformanceCompoent>
+            <p className="vl-report__text">
+              Exceptional brilliance and balance, with precise symmetry, refined
+              color tone, and no visible growth lines.
+            </p>
+          </div>
 
-          <h3>What this Grade Reflects</h3>
+          <h3 className="vl-report__list-title">What this Grade Reflects</h3>
           <ul className="vl-report__list">
             <li>Appeal of the face-up shape outline</li>
             <li>Precision of facet patterning</li>
@@ -229,12 +272,29 @@ function App() {
           </ul>
         </div>
       </section>
-      <section className="vl-report__images-wrapper">
-        <div>
+      <section className="vl-report__images-wrapper images-wrapper">
+        <div className="images-wrapper__col-1">
           <h2>Proportions & Facet Design</h2>
+          <div className="images-wrapper__scheme-1">
+            <img
+              src="https://placehold.co/600x400?text=Scheme 1 placeholder"
+              alt="Lorem ipsum"
+            />
+          </div>
+          <div className="images-wrapper__scheme-2">
+            <img
+              src="https://placehold.co/600x400?text=Scheme 2 image placeholder"
+              alt="Lorem ipsum"
+            />
+          </div>
         </div>
-        <div>
+        <div className="images-wrapper__col-2">
           <h2>Optical Analysis</h2>
+          <OpticalAnalyssisComponent
+            asetImage="1"
+            arrowImage="1"
+            heartImage="1"
+          ></OpticalAnalyssisComponent>
         </div>
       </section>
       <section className="vl-report__about">
@@ -258,6 +318,7 @@ function App() {
           vldiamond.com/verify.
         </p>
       </section>
+      {modal}
     </>
   );
 }

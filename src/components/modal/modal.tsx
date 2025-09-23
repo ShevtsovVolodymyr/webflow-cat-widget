@@ -23,7 +23,7 @@ export const Modal: React.FC<ModalProps> = ({ isOpen, onClose, title, children }
       <div className="vl-modal__content">
         {/* Header */}
         <div className="vl-modal__header">
-          <h2 className="vl-modal__title">{title}</h2>
+          <h4 className="vl-modal__title">{title}</h4>
           <button
             onClick={onClose}
             className="vl-modal__close-button"

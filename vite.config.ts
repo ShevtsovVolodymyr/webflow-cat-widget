@@ -16,17 +16,10 @@ export default defineConfig(({ mode }) => {
     css: {
       preprocessorOptions: {
         scss: {
-          // Use absolute paths or @ alias
           additionalData: `
             @import "@/styles/_variables.scss";
             @import "@/styles/_typography.scss";
           `,
-          // Alternative: use relative paths from project root
-          // additionalData: `
-          //   @import "./src/styles/_variables.scss";
-          //   @import "./src/styles/_typography.scss";
-          //   @import "./src/styles/_main.scss";
-          // `,
         }
       }
     }
